@@ -91,7 +91,7 @@ class HarvardPerson extends CApplicationComponent {
 			//we have the data in the session, so pull it all from there
 			$this->fname = $_SESSION['HarvardPerson']['fname'];
 			$this->lname = $_SESSION['HarvardPerson']['lname'];
-			$this->full_name = ($_SESSION['HarvardPerson']['displayname'] != '') ? $_SESSION['HarvardPerson']['displayname'] : $_SESSION['HarvardPerson']['full_name'];
+			$this->full_name = (@$_SESSION['HarvardPerson']['displayname'] != '') ? $_SESSION['HarvardPerson']['displayname'] : $_SESSION['HarvardPerson']['full_name'];
 			$this->email = $_SESSION['HarvardPerson']['email'];
 			$this->affiliation = $_SESSION['HarvardPerson']['affiliation'];
 			$this->huid = $_SESSION['HarvardPerson']['huid'];
