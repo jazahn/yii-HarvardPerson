@@ -126,7 +126,7 @@ class HarvardPerson extends CApplicationComponent {
 	}
 		
 	function bind(){
-		$this->r = ldap_bind($this->ds, "uid=".$this->ldap_app.",ou=applications,o=Harvard University Core,dc=huid,dc=harvard,dc=edu", $this->ldap_pass); 
+		$this->r = @ldap_bind($this->ds, "uid=".$this->ldap_app.",ou=applications,o=Harvard University Core,dc=huid,dc=harvard,dc=edu", $this->ldap_pass); 
 		if($this->r === FALSE) {
 			$this->_error("binding");
 		}
@@ -138,7 +138,7 @@ class HarvardPerson extends CApplicationComponent {
 			return false;
 		}
 
-		$sr = ldap_search($this->ds, "ou=people,o=Harvard University Core, dc=huid, dc=harvard, dc=edu", "harvardeduidnumber=$uid");
+		$sr = @ldap_search($this->ds, "ou=people,o=Harvard University Core, dc=huid, dc=harvard, dc=edu", "harvardeduidnumber=$uid");
 		if($sr === FALSE) {
 			$this->_error("searching");
 		}
@@ -147,7 +147,7 @@ class HarvardPerson extends CApplicationComponent {
 	}
 
 	function get_entries($result) {
-		$entries = ldap_get_entries($this->ds, $result);
+		$entries = @ldap_get_entries($this->ds, $result);
 		if($entries === FALSE) {
 			$this->_error("getting entries");
 		}
